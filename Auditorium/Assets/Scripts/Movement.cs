@@ -9,8 +9,8 @@ public class Movement : MonoBehaviour
 {
 
 
-    public float MoveSpeed;
-    public string TagToFollow;
+    public float moveSpeed;
+    public string tagToFollow;
 
     /*[SerializeField][Range(-1f,1f)] private float MoveX;
     [SerializeField][Range(-1f, 1f)] private float MoveY;
@@ -37,8 +37,8 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (TagToFollow != "") {
-            _target = GameObject.FindGameObjectWithTag(TagToFollow).transform;
+        if (tagToFollow != "") {
+            _target = GameObject.FindGameObjectWithTag(tagToFollow).transform;
         }
         
     }
@@ -62,7 +62,7 @@ public class Movement : MonoBehaviour
             direction = moveDirection;
         }
 
-        _rb2d.velocity = direction.normalized * MoveSpeed;
+        _rb2d.velocity = direction.normalized * moveSpeed;
     }
 
     public void Rotate(Vector3 direction = new Vector3())
