@@ -220,6 +220,94 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 7058884184250730863, guid: a6d37324c7d54c7458d19b01883f8565, type: 3}
   m_PrefabInstance: {fileID: 4688159232355666142}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2108255390
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2108255393}
+  - component: {fileID: 2108255392}
+  - component: {fileID: 2108255391}
+  m_Layer: 0
+  m_Name: Effector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!58 &2108255391
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108255390}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!249 &2108255392
+AreaEffector2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108255390}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGlobalAngle: 0
+  m_ForceAngle: -90
+  m_ForceMagnitude: 100
+  m_ForceVariation: 0
+  m_ForceTarget: 0
+  m_Drag: 0
+  m_AngularDrag: 0
+--- !u!4 &2108255393
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108255390}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.54, y: 0.27, z: 0.07283407}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1479717508234254776
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -342,13 +430,29 @@ PrefabInstance:
       value: MusicBox
       objectReference: {fileID: 0}
     - target: {fileID: 7058884184250730863, guid: a6d37324c7d54c7458d19b01883f8565, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7058884184250730863, guid: a6d37324c7d54c7458d19b01883f8565, type: 3}
+      propertyPath: m_Volume
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7058884184250730863, guid: a6d37324c7d54c7458d19b01883f8565, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 79a86f255e9ab4d7e851b528ed2c893d, type: 3}
+      objectReference: {fileID: 8300000, guid: a6cf1edc40628422fb649b0c43be3ce3, type: 3}
+    - target: {fileID: 7393918025337999077, guid: a6d37324c7d54c7458d19b01883f8565, type: 3}
+      propertyPath: volumeMinus
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7393918025337999077, guid: a6d37324c7d54c7458d19b01883f8565, type: 3}
       propertyPath: _audioSource
       value: 
       objectReference: {fileID: 855388990}
+    - target: {fileID: 7393918025337999077, guid: a6d37324c7d54c7458d19b01883f8565, type: 3}
+      propertyPath: waitInterval
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -361,3 +465,4 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 1479717508234254776}
   - {fileID: 4688159232355666142}
+  - {fileID: 2108255393}

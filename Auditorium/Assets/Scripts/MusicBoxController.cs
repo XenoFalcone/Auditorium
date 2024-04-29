@@ -10,7 +10,9 @@ public class MusicBoxController : MonoBehaviour
     public Color _offColor;
     public Color _onColor;
     public SpriteRenderer[] _bars;
-    public float volumeModifier = 0.1f;
+    public float volumePlus = 0.1f;
+    public float volumeMinus = 0.1f;
+    public float waitInterval = 1f;
 
     [SerializeField] private float chrono = 0f;
     private bool particleEnter;
@@ -18,6 +20,8 @@ public class MusicBoxController : MonoBehaviour
 
     private void Awake()
     {
+       
+        //On récupère toutes les barres de volume qui composent l'objet
         int i = 0;
         
         foreach (SpriteRenderer child in GetComponentsInChildren<SpriteRenderer>())
@@ -40,6 +44,8 @@ public class MusicBoxController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        //On parcours les barres de volumes et on regarde si elles sont "activées"
         float i = 1;
         float length = _bars.Length;
 
@@ -57,10 +63,11 @@ public class MusicBoxController : MonoBehaviour
             i++;
         }
 
+        //On met un delai avant que le son ne commence à baisser
         if(particleEnter)
         {
             chrono += Time.deltaTime;
-            if (chrono > 1f) 
+            if (chrono > waitInterval) 
             {
                 particleEnter = false;
                 chrono = 0f;
@@ -68,10 +75,10 @@ public class MusicBoxController : MonoBehaviour
         }
         else
         {
-            //Le volume baisse en permanance
+            //Le volume baisse en permanance après une seconde sans particule
             if (!particleEnter)
             {
-                _audioSource.volume -= volumeModifier * Time.deltaTime;
+                _audioSource.volume -= volumeMinus * Time.deltaTime;
             }
         }
 
@@ -82,8 +89,14 @@ public class MusicBoxController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        particleEnter = true;
-        chrono = 0;
-        _audioSource.volume += volumeModifier;
+
+        if (collision.CompareTag("Particule"))
+        {
+            particleEnter = true;
+            chrono = 0f;
+
+            _audioSource.volume += volumePlus;
+        }
+
     }
 }
