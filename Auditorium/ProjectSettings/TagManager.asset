@@ -8,6 +8,7 @@ TagManager:
   - Particule
   - Effector
   - Arrow
+  - MusicBox
   layers:
   - Default
   - TransparentFX

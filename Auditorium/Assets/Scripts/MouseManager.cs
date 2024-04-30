@@ -11,6 +11,10 @@ public class MouseManager : MonoBehaviour
     [SerializeField] private Texture2D _mouseMove;
     [SerializeField] private Texture2D _mouseResize;
 
+    [Header("Radius parameters")]
+    public float minRadius = 1.0f;
+    public float maxRadius = 10.0f;
+
     private bool _isClicked = false;
     private GameObject _objectToMove;
     private GameObject _objectToResize;
@@ -38,7 +42,8 @@ public class MouseManager : MonoBehaviour
         }
         else if (_isClicked && _objectToResize != null)
         {
-            _objectToResize.GetComponent<CircleShape>().Radius = Mathf.Clamp(Vector2.Distance(_objectToResize.transform.position, mousePositionWorld), 1f, 5f);
+            float radius = Vector2.Distance(_objectToResize.transform.position, mousePositionWorld);
+            _objectToResize.GetComponent<CircleShape>().Radius = Mathf.Clamp(radius, minRadius, maxRadius);
             _objectToResize.GetComponent<AreaEffector2D>().forceMagnitude = _objectToResize.GetComponent<CircleShape>().Radius * 100;
         }
         /*else if (!_isClicked)

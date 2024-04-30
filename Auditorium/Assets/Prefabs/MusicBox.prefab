@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 7393918025337999077}
   m_Layer: 0
   m_Name: MusicBox
-  m_TagString: Untagged
+  m_TagString: MusicBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -350,7 +350,9 @@ MonoBehaviour:
   _offColor: {r: 1, g: 1, b: 1, a: 0.19607843}
   _onColor: {r: 1, g: 1, b: 1, a: 1}
   _bars: []
-  volumeModifier: 0.1
+  volumePlus: 0.1
+  volumeMinus: 0.1
+  waitInterval: 1
   chrono: 0
 --- !u!1 &6314360312887009756
 GameObject:
