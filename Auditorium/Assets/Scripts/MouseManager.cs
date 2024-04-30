@@ -14,12 +14,15 @@ public class MouseManager : MonoBehaviour
     [Header("Radius parameters")]
     public float minRadius = 1.0f;
     public float maxRadius = 10.0f;
+    public float magnitudeRatio = 3f;
+    public float magnitudeMin = 10f;
 
     private bool _isClicked = false;
     private GameObject _objectToMove;
-    private GameObject _objectToResize;
+    private CircleShape _objectToResize;
+    private AreaEffector2D _objectEffector;
 
-    private Vector2 mousePositionWorld;
+    private Vector2 _mousePositionWorld;
 
     // Start is called before the first frame update
     void Start()
@@ -37,14 +40,15 @@ public class MouseManager : MonoBehaviour
         if (_isClicked && _objectToMove != null)
         {
             //Debug.Log("Move");
-            _objectToMove.transform.position = new Vector2(mousePositionWorld.x, mousePositionWorld.y);
+            _objectToMove.transform.position = new Vector2(_mousePositionWorld.x, _mousePositionWorld.y);
 
         }
         else if (_isClicked && _objectToResize != null)
         {
-            float radius = Vector2.Distance(_objectToResize.transform.position, mousePositionWorld);
-            _objectToResize.GetComponent<CircleShape>().Radius = Mathf.Clamp(radius, minRadius, maxRadius);
-            _objectToResize.GetComponent<AreaEffector2D>().forceMagnitude = _objectToResize.GetComponent<CircleShape>().Radius * 100;
+            float radius = Vector2.Distance(_objectToResize.transform.position, _mousePositionWorld);
+            _objectToResize.Radius = Mathf.Clamp(radius, minRadius, maxRadius);
+            _objectEffector.forceMagnitude = Mathf.Clamp(_objectToResize.Radius * magnitudeRatio, magnitudeMin, _objectToResize.Radius * magnitudeRatio);  
+            //magnitudeMin - magnitudeRatio + _objectToResize.Radius * magnitudeRatio;
         }
         /*else if (!_isClicked)
         {
@@ -59,12 +63,11 @@ public class MouseManager : MonoBehaviour
         _mouseRay = Camera.main.ScreenPointToRay(mousePosition);
         _intersection = Physics2D.GetRayIntersection(_mouseRay);
 
-        mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePosition);
+        _mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePosition);
 
         //if (!_isClicked || (_objectToMove == null && _objectToResize == null))
         if (!_isClicked)
         {
-
 
             if (_intersection.collider != null)
             {
@@ -72,7 +75,8 @@ public class MouseManager : MonoBehaviour
                 {
                     Cursor.SetCursor(_mouseResize, new Vector2(256f, 256f), CursorMode.Auto);
                     _objectToMove = null;
-                    _objectToResize = _intersection.collider.gameObject;
+                    _objectToResize = _intersection.collider.gameObject.GetComponent<CircleShape>();
+                    _objectEffector = _intersection.collider.gameObject.GetComponent<AreaEffector2D>();
 
                 }
                 else if (_intersection.collider.CompareTag("Arrow"))
