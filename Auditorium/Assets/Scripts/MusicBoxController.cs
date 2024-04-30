@@ -16,11 +16,14 @@ public class MusicBoxController : MonoBehaviour
 
     [SerializeField] private float chrono = 0f;
     private bool particleEnter;
+    private GameManager gameManager;
 
 
     private void Awake()
     {
-       
+
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+
         //On récupère toutes les barres de volume qui composent l'objet
         int i = 0;
         
@@ -44,6 +47,8 @@ public class MusicBoxController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        if(gameManager.victorySwitch == false) {
         
         //On parcours les barres de volumes et on regarde si elles sont "activées"
         float i = 1;
@@ -82,15 +87,15 @@ public class MusicBoxController : MonoBehaviour
             }
         }
 
-        
-        
+
+        }
 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.CompareTag("Particule"))
+        if (collision.CompareTag("Particule") && gameManager.victorySwitch == false)
         {
             particleEnter = true;
             chrono = 0f;

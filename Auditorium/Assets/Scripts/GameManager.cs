@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     public UnityEvent victoryEvent;
     public UnityEvent startEvent;
+    public bool victorySwitch = false;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
 
             if (chrono > timeForVictory)
             {
+                victorySwitch = true;
                 victoryEvent.Invoke();
                 Debug.Log("Victory !!!!");
             }

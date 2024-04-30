@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 180513301}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -197,6 +197,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  victorySwitch: 0
 --- !u!4 &180513300
 Transform:
   m_ObjectHideFlags: 0
@@ -915,6 +916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mouseMove: {fileID: 2800000, guid: 7a9a0dd7570af2745a00bd060fbda302, type: 3}
   _mouseResize: {fileID: 2800000, guid: 3044446006d994f4cafbb545084e6e6b, type: 3}
+  gameManager: {fileID: 180513299}
   minRadius: 1
   maxRadius: 10
   magnitudeRatio: 20

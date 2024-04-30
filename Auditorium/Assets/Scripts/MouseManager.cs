@@ -10,6 +10,7 @@ public class MouseManager : MonoBehaviour
     private RaycastHit2D _intersection;
     [SerializeField] private Texture2D _mouseMove;
     [SerializeField] private Texture2D _mouseResize;
+    [SerializeField] private GameManager gameManager;
 
     [Header("Radius parameters")]
     public float minRadius = 1.0f;
@@ -36,29 +37,34 @@ public class MouseManager : MonoBehaviour
 
         //Debug.Log(_objectToResize +" Resize");
         //Debug.Log(_objectToMove + "Move");
+        if (gameManager.victorySwitch == false)
+        {
 
-        if (_isClicked && _objectToMove != null)
-        {
-            //Debug.Log("Move");
-            _objectToMove.transform.position = new Vector2(_mousePositionWorld.x, _mousePositionWorld.y);
+            if (_isClicked && _objectToMove != null)
+            {
+                //Debug.Log("Move");
+                _objectToMove.transform.position = new Vector2(_mousePositionWorld.x, _mousePositionWorld.y);
 
+            }
+            else if (_isClicked && _objectToResize != null)
+            {
+                float radius = Vector2.Distance(_objectToResize.transform.position, _mousePositionWorld);
+                _objectToResize.Radius = Mathf.Clamp(radius, minRadius, maxRadius);
+                _objectEffector.forceMagnitude = Mathf.Clamp(_objectToResize.Radius * magnitudeRatio, magnitudeMin, _objectToResize.Radius * magnitudeRatio);
+                //magnitudeMin - magnitudeRatio + _objectToResize.Radius * magnitudeRatio;
+            }
+            /*else if (!_isClicked)
+            {
+                _objectToMove = null;
+                _objectToResize = null;
+            }*/
         }
-        else if (_isClicked && _objectToResize != null)
-        {
-            float radius = Vector2.Distance(_objectToResize.transform.position, _mousePositionWorld);
-            _objectToResize.Radius = Mathf.Clamp(radius, minRadius, maxRadius);
-            _objectEffector.forceMagnitude = Mathf.Clamp(_objectToResize.Radius * magnitudeRatio, magnitudeMin, _objectToResize.Radius * magnitudeRatio);  
-            //magnitudeMin - magnitudeRatio + _objectToResize.Radius * magnitudeRatio;
-        }
-        /*else if (!_isClicked)
-        {
-            _objectToMove = null;
-            _objectToResize = null;
-        }*/
     }
 
     public void PointerPosition(InputAction.CallbackContext context)
     {
+        
+        
         Vector2 mousePosition = context.ReadValue<Vector2>();
         _mouseRay = Camera.main.ScreenPointToRay(mousePosition);
         _intersection = Physics2D.GetRayIntersection(_mouseRay);
@@ -69,7 +75,7 @@ public class MouseManager : MonoBehaviour
         if (!_isClicked)
         {
 
-            if (_intersection.collider != null)
+            if (_intersection.collider != null && gameManager.victorySwitch == false)
             {
                 if (_intersection.collider.CompareTag("Effector"))
                 {
