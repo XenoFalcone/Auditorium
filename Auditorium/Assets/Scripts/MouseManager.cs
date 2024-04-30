@@ -20,28 +20,32 @@ public class MouseManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
-    {    
-        
+    {
+
+        //Debug.Log(_objectToResize +" Resize");
+        //Debug.Log(_objectToMove + "Move");
+
         if (_isClicked && _objectToMove != null)
         {
             //Debug.Log("Move");
             _objectToMove.transform.position = new Vector2(mousePositionWorld.x, mousePositionWorld.y);
 
-        }else if(_isClicked && _objectToResize != null)
+        }
+        else if (_isClicked && _objectToResize != null)
         {
-            _objectToResize.GetComponent<CircleShape>().Radius = Mathf.Clamp(Vector2.Distance(_objectToResize.transform.position, mousePositionWorld),1f,3f);
+            _objectToResize.GetComponent<CircleShape>().Radius = Mathf.Clamp(Vector2.Distance(_objectToResize.transform.position, mousePositionWorld), 1f, 5f);
             _objectToResize.GetComponent<AreaEffector2D>().forceMagnitude = _objectToResize.GetComponent<CircleShape>().Radius * 100;
-        } 
-        else if (!_isClicked)
+        }
+        /*else if (!_isClicked)
         {
             _objectToMove = null;
             _objectToResize = null;
-        }
+        }*/
     }
 
     public void PointerPosition(InputAction.CallbackContext context)
@@ -52,32 +56,34 @@ public class MouseManager : MonoBehaviour
 
         mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePosition);
 
-        if (!_isClicked || (_objectToMove == null && _objectToResize == null))
+        //if (!_isClicked || (_objectToMove == null && _objectToResize == null))
+        if (!_isClicked)
         {
 
-        
-        if (_intersection.collider != null)
-        {
-            if (_intersection.collider.CompareTag("Effector"))
+
+            if (_intersection.collider != null)
             {
-                Cursor.SetCursor(_mouseResize, new Vector2(256f,256f), CursorMode.Auto);
-                _objectToMove = null;
-                _objectToResize = _intersection.collider.gameObject;
+                if (_intersection.collider.CompareTag("Effector"))
+                {
+                    Cursor.SetCursor(_mouseResize, new Vector2(256f, 256f), CursorMode.Auto);
+                    _objectToMove = null;
+                    _objectToResize = _intersection.collider.gameObject;
 
+                }
+                else if (_intersection.collider.CompareTag("Arrow"))
+                {
+                    Cursor.SetCursor(_mouseMove, new Vector2(256f, 256f), CursorMode.Auto);
+                    _objectToMove = _intersection.collider.transform.parent.gameObject;
+                    _objectToResize = null;
+
+                };
             }
-            else if (_intersection.collider.CompareTag("Arrow"))
+            else
             {
-                Cursor.SetCursor(_mouseMove, new Vector2(256f, 256f), CursorMode.Auto);
-                _objectToMove = _intersection.collider.transform.parent.gameObject;
+                Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+                _objectToMove = null;
                 _objectToResize = null;
-                
-            };
-        }
-        else
-        {
-            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-            //_objectToMove = null;
-        }
+            }
         }
         //Modifier Vector2.zero
     }
