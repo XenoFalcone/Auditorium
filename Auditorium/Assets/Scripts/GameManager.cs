@@ -11,11 +11,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float timeForVictory = 2f;
 
     public UnityEvent victoryEvent;
+    public UnityEvent startEvent;
 
     // Start is called before the first frame update
     void Start()
     {
         musicBox = GameObject.FindGameObjectsWithTag("MusicBox");
+        startEvent.Invoke();
+
     }
 
     // Update is called once per frame
@@ -48,5 +51,10 @@ public class GameManager : MonoBehaviour
         {
             chrono = 0f;
         }
+    }
+
+    public void SetTimeScale(float scale)
+    {
+        Time.timeScale = scale;
     }
 }

@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1151e9b1f403a1d4abeaca51b08d14f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 20
+  moveSpeed: 30
   tagToFollow: 
   moveDirection: {x: 1, y: 0, z: 0}
   rotateDirection: {x: 0, y: 0, z: 0}

@@ -51,4 +51,4 @@ MonoBehaviour:
   spawnRadius: 3
   modifyDirection: 1
   moveDirection: {x: 1, y: 0, z: 0}
-  moveSpeed: 20
+  moveSpeed: 30
