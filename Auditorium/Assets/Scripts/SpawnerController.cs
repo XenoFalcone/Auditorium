@@ -89,6 +89,13 @@ public class SpawnerController : MonoBehaviour
 
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(transform.position, spawnRadius);
+        //Gizmos.DrawRay(_mouseRay.origin, _mouseRay.direction * 1000);
+    }
 }
 
 

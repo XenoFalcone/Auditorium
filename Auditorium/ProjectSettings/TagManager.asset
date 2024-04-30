@@ -6,6 +6,8 @@ TagManager:
   tags:
   - VolumeBar
   - Particule
+  - Effector
+  - Arrow
   layers:
   - Default
   - TransparentFX
