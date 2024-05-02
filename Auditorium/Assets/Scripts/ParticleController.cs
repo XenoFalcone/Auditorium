@@ -1,38 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using static SceneFader;
 
 public class ParticleController : MonoBehaviour
 {
 
-    //public UnityEvent OnUpdate;
+    public TrailRenderer _tr;
     private Rigidbody2D _rb2d;
 
-
-    public void Awake()
+    private void OnEnable()
     {
-        _rb2d = GetComponent<Rigidbody2D>();
+        StartCoroutine(WaitForTrailRenderer());
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        ChangeDirection();
+        _rb2d = GetComponent<Rigidbody2D>();
+  
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (_rb2d.velocity.x == 0 && _rb2d.velocity.y == 0)
+        if (_rb2d.velocity.magnitude <= 0.1f)
         {
-            Destroy(gameObject);
+            _rb2d.velocity = Vector2.zero;
+            _tr.emitting = false;
+            _tr.Clear();
+            gameObject.SetActive(false);
         }
     }
 
-    public void ChangeDirection()
+    private void OnDisable()
     {
-        GetComponent<Movement>().Move(transform.up);
+        
     }
+
+    public IEnumerator WaitForTrailRenderer()
+    {
+
+        yield return new WaitForEndOfFrame();
+        //yield return new WaitForSeconds(1f);
+        _tr.emitting = true;
+    }
+
 }

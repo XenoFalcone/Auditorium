@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
             {
                 victorySwitch = true;
                 victoryEvent.Invoke();
-                Debug.Log("Victory !!!!");
+                //Debug.Log("Victory !!!!");
             }
 
         }

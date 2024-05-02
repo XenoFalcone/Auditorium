@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 395488805436873638}
   - component: {fileID: 5840996625307298147}
   - component: {fileID: 3807158423531268925}
-  - component: {fileID: 4000229697513843294}
   - component: {fileID: 1982146752181340735}
   m_Layer: 0
   m_Name: Particle
@@ -255,22 +254,6 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
---- !u!114 &4000229697513843294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2860658927773504172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1151e9b1f403a1d4abeaca51b08d14f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 30
-  tagToFollow: 
-  moveDirection: {x: 1, y: 0, z: 0}
-  rotateDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &1982146752181340735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,3 +266,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 881e33ae0a4e5ee4ba0d9089d4c0e5c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tr: {fileID: 3807158423531268925}

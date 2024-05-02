@@ -44,11 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba5f865482d11ac4086c110f23953cf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activate: 1
-  spawnInterval: 3
-  spawnChance: 1
-  Prefab: {fileID: 2860658927773504172, guid: f6abe9daf42142a4a83deaad14c76715, type: 3}
-  spawnRadius: 3
-  modifyDirection: 1
-  moveDirection: {x: 1, y: 0, z: 0}
-  moveSpeed: 30
+  _spawnRadius: 1
+  _spawnInterval: 0.2
+  _moveSpeed: 30

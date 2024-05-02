@@ -1121,6 +1121,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1910186974}
   m_CullTransparentMesh: 1
+--- !u!1 &2013465090
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2013465092}
+  - component: {fileID: 2013465091}
+  m_Layer: 0
+  m_Name: ObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2013465091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013465090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce63af04d52cd1f458817c81f22645d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  qtyToCreate: 100
+  prefabToCreate: {fileID: 2860658927773504172, guid: f6abe9daf42142a4a83deaad14c76715, type: 3}
+--- !u!4 &2013465092
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013465090}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.69681835, y: 0.056205884, z: 0.06968032}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1030583638948255207
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1251,6 +1297,10 @@ PrefabInstance:
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 9216145838012766209, guid: 16e97615459dbec4c91850b6bbe23001, type: 3}
+      propertyPath: _particlePrefab
+      value: 
+      objectReference: {fileID: 2860658927773504172, guid: f6abe9daf42142a4a83deaad14c76715, type: 3}
+    - target: {fileID: 9216145838012766209, guid: 16e97615459dbec4c91850b6bbe23001, type: 3}
       propertyPath: modifyDirection
       value: 0
       objectReference: {fileID: 0}
@@ -1271,3 +1321,4 @@ SceneRoots:
   - {fileID: 1471796988}
   - {fileID: 180513300}
   - {fileID: 1729768201}
+  - {fileID: 2013465092}
