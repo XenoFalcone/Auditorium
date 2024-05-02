@@ -10,7 +10,7 @@ public class SceneFader : MonoBehaviour
     #region FIELDS
     public RawImage fadeOutUIImage;
     public float fadeSpeed = 0.8f;
-    public string nextScene;
+    //public string nextScene;
 
     private GameObject[] musicBox;
 
@@ -41,9 +41,9 @@ public class SceneFader : MonoBehaviour
         
     }
 
-    public void FadeIn()
+    public void FadeIn(string scene)
     {
-        StartCoroutine(FadeAndLoadScene(FadeDirection.In, nextScene));
+        StartCoroutine(FadeAndLoadScene(FadeDirection.In, scene));
     }
     #endregion
 
@@ -90,10 +90,11 @@ public class SceneFader : MonoBehaviour
     {
 
         var timeElapsed = 0f;
+        var maxVolume = music.volume;
 
         while (music.volume > 0)
         {
-            music.volume = Mathf.Lerp(1f, 0f, timeElapsed / fadeSpeed);
+            music.volume = Mathf.Lerp(maxVolume, 0f, timeElapsed / fadeSpeed);
             timeElapsed += Time.deltaTime;
             yield return 0.1f;
         }

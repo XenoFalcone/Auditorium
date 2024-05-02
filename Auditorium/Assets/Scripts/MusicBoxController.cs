@@ -48,7 +48,7 @@ public class MusicBoxController : MonoBehaviour
     void Update()
     {
         
-        if(gameManager.victorySwitch == false) {
+        if(gameManager.victorySwitch == false && gameManager.titleSwitch == false) {
         
         //On parcours les barres de volumes et on regarde si elles sont "activées"
         float i = 1;
@@ -95,7 +95,7 @@ public class MusicBoxController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.CompareTag("Particule") && gameManager.victorySwitch == false)
+        if (collision.CompareTag("Particule") && gameManager.victorySwitch == false && gameManager.titleSwitch == false)
         {
             particleEnter = true;
             chrono = 0f;

@@ -37,7 +37,7 @@ public class MouseManager : MonoBehaviour
 
         //Debug.Log(_objectToResize +" Resize");
         //Debug.Log(_objectToMove + "Move");
-        if (gameManager.victorySwitch == false)
+        if (gameManager.victorySwitch == false && gameManager.titleSwitch == false)
         {
 
             if (_isClicked && _objectToMove != null)
@@ -66,7 +66,16 @@ public class MouseManager : MonoBehaviour
         
         
         Vector2 mousePosition = context.ReadValue<Vector2>();
+        //Debug.Log(mousePosition);
+        //Debug.Log(Camera.main);
+
+        if (mousePosition == null || Camera.main == null)
+        {
+            return;
+        }
+
         _mouseRay = Camera.main.ScreenPointToRay(mousePosition);
+        //Debug.Log(mousePosition);
         _intersection = Physics2D.GetRayIntersection(_mouseRay);
 
         _mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -75,7 +84,7 @@ public class MouseManager : MonoBehaviour
         if (!_isClicked)
         {
 
-            if (_intersection.collider != null && gameManager.victorySwitch == false)
+            if (_intersection.collider != null && gameManager.victorySwitch == false && gameManager.titleSwitch == false)
             {
                 if (_intersection.collider.CompareTag("Effector"))
                 {
@@ -100,7 +109,7 @@ public class MouseManager : MonoBehaviour
                 _objectToResize = null;
             }
         }
-        //Modifier Vector2.zero
+
     }
 
     public void Click(InputAction.CallbackContext context)
@@ -128,7 +137,7 @@ public class MouseManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawRay(_mouseRay.origin, _mouseRay.direction * 1000);
+        /*Gizmos.color = Color.green;
+        Gizmos.DrawRay(_mouseRay.origin, _mouseRay.direction * 1000);*/
     }
 }

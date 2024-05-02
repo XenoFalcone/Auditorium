@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,19 +6,32 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] musicBox;
+    [SerializeField] private AudioSource[] _musicBoxes;
     private bool victory;
     private float chrono = 0f;
     [SerializeField] private float timeForVictory = 2f;
 
     public UnityEvent victoryEvent;
     public UnityEvent startEvent;
+    public UnityEvent titleEvent;
     public bool victorySwitch = false;
+    public bool titleSwitch = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        musicBox = GameObject.FindGameObjectsWithTag("MusicBox");
+        var i = 0;
+
+        GameObject[] boxes = GameObject.FindGameObjectsWithTag("MusicBox");
+
+        _musicBoxes = new AudioSource[boxes.Length];
+
+        foreach (var musicObject in boxes)
+        {
+                _musicBoxes[i] = musicObject.GetComponent<AudioSource>();
+                i++;
+        }
+
         startEvent.Invoke();
 
     }
@@ -28,7 +42,7 @@ public class GameManager : MonoBehaviour
 
         victory = true;
 
-        foreach (var item in musicBox)
+        foreach (var item in _musicBoxes)
         {
             if(item.GetComponent<AudioSource>().volume != 1f)
             {
@@ -58,5 +72,16 @@ public class GameManager : MonoBehaviour
     public void SetTimeScale(float scale)
     {
         Time.timeScale = scale;
+    }
+
+    public void GoToTitle()
+    {
+        titleSwitch = true;
+        titleEvent.Invoke();
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
