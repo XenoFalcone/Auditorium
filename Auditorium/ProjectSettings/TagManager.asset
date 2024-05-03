@@ -10,6 +10,9 @@ TagManager:
   - Arrow
   - MusicBox
   - GameManager
+  - RedParticule
+  - BlueParticule
+  - GreenParticule
   layers:
   - Default
   - TransparentFX

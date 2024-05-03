@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     public UnityEvent titleEvent;
     public bool victorySwitch = false;
     public bool titleSwitch = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -84,4 +86,5 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
+
 }

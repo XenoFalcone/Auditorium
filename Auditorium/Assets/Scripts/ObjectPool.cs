@@ -8,7 +8,8 @@ public class ObjectPool : MonoBehaviour
 
     public int qtyToCreate;
     public GameObject prefabToCreate;
-    private static GameObject[] pool;
+    //private static GameObject[] pool;
+    public GameObject[] pool;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,20 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    public static GameObject Get()
+    /*public static GameObject Get()
+    {
+        foreach (GameObject item in pool)
+        {
+            if (!item.activeSelf)
+            {
+                return item;
+            }
+        }
+
+        return null;
+    }*/
+
+    public GameObject ParticuleGet()
     {
         foreach (GameObject item in pool)
         {

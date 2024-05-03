@@ -13,10 +13,12 @@ public class SpawnerController : MonoBehaviour
     [SerializeField] private float _moveSpeed = 20f;
     private float _chrono = 0f;
 
+    private ObjectPool pool;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        pool = GetComponent<ObjectPool>();
     }
 
     // Update is called once per frame
@@ -29,7 +31,7 @@ public class SpawnerController : MonoBehaviour
             Vector2 spawnPosition = (Vector2)transform.position + Random.insideUnitCircle * _spawnRadius;
 
             //On récupère la particule
-            GameObject particle = ObjectPool.Get();
+            GameObject particle = pool.ParticuleGet();
             //GameObject particle = Instantiate( _particlePrefab, spawnPosition, Quaternion.identity );
 
             if (particle == null)

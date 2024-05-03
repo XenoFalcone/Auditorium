@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class MouseManager : MonoBehaviour
 {
@@ -15,8 +16,6 @@ public class MouseManager : MonoBehaviour
     [Header("Radius parameters")]
     public float minRadius = 1.0f;
     public float maxRadius = 10.0f;
-    public float magnitudeRatio = 3f;
-    public float magnitudeMin = 10f;
 
     private bool _isClicked = false;
     private GameObject _objectToMove;
@@ -43,14 +42,13 @@ public class MouseManager : MonoBehaviour
             if (_isClicked && _objectToMove != null)
             {
                 //Debug.Log("Move");
-                _objectToMove.transform.position = new Vector2(_mousePositionWorld.x, _mousePositionWorld.y);
+                _objectToMove.transform.position = new Vector3(_mousePositionWorld.x, _mousePositionWorld.y, _objectToMove.transform.position.z);
 
             }
             else if (_isClicked && _objectToResize != null)
             {
                 float radius = Vector2.Distance(_objectToResize.transform.position, _mousePositionWorld);
                 _objectToResize.Radius = Mathf.Clamp(radius, minRadius, maxRadius);
-                _objectEffector.forceMagnitude = Mathf.Clamp(_objectToResize.Radius * magnitudeRatio, magnitudeMin, _objectToResize.Radius * magnitudeRatio);
                 //magnitudeMin - magnitudeRatio + _objectToResize.Radius * magnitudeRatio;
             }
             /*else if (!_isClicked)
@@ -63,8 +61,9 @@ public class MouseManager : MonoBehaviour
 
     public void PointerPosition(InputAction.CallbackContext context)
     {
-        
-        
+
+        //if (EventSystem.current.IsPointerOverGameObject()) return;
+
         Vector2 mousePosition = context.ReadValue<Vector2>();
         //Debug.Log(mousePosition);
         //Debug.Log(Camera.main);

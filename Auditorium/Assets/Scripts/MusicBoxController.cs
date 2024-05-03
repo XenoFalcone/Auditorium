@@ -17,6 +17,7 @@ public class MusicBoxController : MonoBehaviour
     [SerializeField] private float chrono = 0f;
     private bool particleEnter;
     private GameManager gameManager;
+    [SerializeField] private string particuleTag = "Particule";
 
 
     private void Awake()
@@ -95,7 +96,7 @@ public class MusicBoxController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.CompareTag("Particule") && gameManager.victorySwitch == false && gameManager.titleSwitch == false)
+        if (collision.CompareTag(particuleTag) && gameManager.victorySwitch == false && gameManager.titleSwitch == false)
         {
             particleEnter = true;
             chrono = 0f;

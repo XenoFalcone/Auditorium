@@ -212,7 +212,7 @@ AudioSource:
   m_GameObject: {fileID: 5922876562074005645}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -5010381579245483933, guid: b89c309216d54d54aa444ad7436ed363, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0
@@ -346,7 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22a6ee3ff4654d45be7bcd3e8932ada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 0}
+  _audioSource: {fileID: 7058884184250730863}
   _offColor: {r: 1, g: 1, b: 1, a: 0.19607843}
   _onColor: {r: 1, g: 1, b: 1, a: 1}
   _bars: []
@@ -354,6 +354,7 @@ MonoBehaviour:
   volumeMinus: 0.1
   waitInterval: 1
   chrono: 0
+  particuleTag: Particule
 --- !u!1 &6314360312887009756
 GameObject:
   m_ObjectHideFlags: 0
